@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh" class="js">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title id="title">fast-md5</title>
+        <meta name="Description" content="Home Page of iissnan">
+        <meta name="color-scheme" content="dark light">
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/layui.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/layer.css">
+        <script src="/static/js/jquery-3.3.1.min.js"></script>
+        <link id="noteanywherecss" media="screen" type="text/css" rel="stylesheet" href="data:text/css,.note-anywhere%20.closebutton%7Bbackground-image%3A%20url%28chrome-extension%3A//bohahkiiknkelflnjjlipnaeapefmjbh/asset/deleteButton.png%29%3B%7D%0A">
+    </head>
+    <script type="text/javascript" charset="utf-8">
+        function ajaxRequest() {
+            $.ajax({        // 发送ajax请求
+                url: "/fast-md5/calc",       // 请求的路径
+                type: "Get",          // 请求的方法
+                data:  "s=" + $("#source").val() ,        // 请求的数据
+                contentType: false,    // ajax上传文件时这两个参数需要设置成false
+                processData: false,
+                success: function(data) {      // 处理成功的回掉函数
+                    var obj = JSON.parse(data)
+                    $("#_32Up").val(obj.capital_32)
+                    $("#_32Low").val(obj.lowercase_32)
+                    $("#_16Up").val(obj.capital_16)
+                    $("#_16Low").val(obj.lowercase_16)
+                },
+                error: function(data) {      // 处理失败的回掉函数
+                }
+
+            })
+        }
+    </script>
+
+    <body>
+        <div class="layout">
+            <div class="layui-row layui-anim-scale pt10" style="width: 100%;">
+                <div class="layui-col-md5">
+                    <div><textarea style="resize: none;height: 200px;" placeholder="不输入干啥呢....." class="layui-textarea w99 fl " id="source" maxlength="1000"></textarea> </div>
+                    <div style="display: inline-block;margin-top: 10px;margin-bottom:20px;">
+                        <button class="layui-btn" id="enmd5" onclick=ajaxRequest()>MD5加密</button>
+                    </div>
+                </div>
+                <div class="layui-col-md4">
+                    <div class="layui-form-item"> <label class="layui-form-label">32位大写</label> <div class="layui-input-block"> <input type="text" id="_32Up" placeholder="32位大写。" click-type="copycode" data-clipboard-target="#_32Up" autocomplete="off" readonly="" class="layui-input"> </div> </div>
+                    <div class="layui-form-item"> <label class="layui-form-label">32位小写</label> <div class="layui-input-block"> <input type="text" id="_32Low" placeholder="32位小写。" click-type="copycode" data-clipboard-target="#_32Low" autocomplete="off" readonly="" class="layui-input"> </div> </div>
+                    <div class="layui-form-item"> <label class="layui-form-label">16位大写</label> <div class="layui-input-block"> <input type="text" id="_16Up" placeholder="16位大写。" click-type="copycode" data-clipboard-target="#_16Up" autocomplete="off" readonly="" class="layui-input"> </div> </div>
+                    <div class="layui-form-item"> <label class="layui-form-label">16位小写</label> <div class="layui-input-block"> <input type="text" id="_16Low" placeholder="16位小写。" click-type="copycode" data-clipboard-target="#_16Low" autocomplete="off" readonly="" class="layui-input"> </div> </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
